@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - platform
+  - scanner
+  - scannerEnemy
+  - ScannerPlayer
+  - End
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - enemy
+  - Water
+  - UI
+  - Player
+  - enemies
+  - Tilemap
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: BG
+    uniqueID: 110791477
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BG2
+    uniqueID: 2623815879
+    locked: 0
+  - name: Player
+    uniqueID: 578360065
+    locked: 0
+  - name: Foreground
+    uniqueID: 1275984247
+    locked: 0
+  - name: BGDialog
+    uniqueID: 516089053
+    locked: 0
+  - name: Dialog
+    uniqueID: 3708891189
+    locked: 0

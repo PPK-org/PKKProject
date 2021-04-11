@@ -29,19 +29,23 @@ public class MainMenu : MonoBehaviour
     }
     public void play()
     {
-        DataPlayer.Resume = false;
+        DataPlayer.resume = false;
         DataPlayer.eventCount = 0;
         LoadLevel(1);
     }
     public void Resume()
     {
-        DataPlayer.Resume = true;
-        DataPlayer data = SaveSystem.LoadPlayer();
-        DataPlayer.xposition = data.position[0];
-        DataPlayer.yposition = data.position[1];
-        DataPlayer.zposition = data.position[2];
-        DataPlayer.Resume = true;
-        LoadLevel(data.level);
+        //Android.reader_function();
+        //DataPlayer data = SaveSystem.LoadPlayer();
+        DataPlayer.resume = true;
+        if(DataPlayer.level != 0)
+        {
+            LoadLevel(DataPlayer.level);
+        }else
+        {
+            LoadLevel(1);
+        }
+        
     }
     public void Quit()
     {

@@ -12,27 +12,30 @@ public class Attackplayer : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
-
-    public int attackDamage = 40;
+    public bool gerakAtk;
+    int attackDamage = 20;
     float nextAtktime= 0f;
     public float attackRate = 2f;
     void Update()
     {
-        if (DataPlayer.eventPlay == true)
+        if (DataPlayer.eventPlay == false)
         {
-            
-        }else{
-        if (Time.time >= nextAtktime)
-        {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Time.time >= nextAtktime)
             {
-                Atk();
-                nextAtktime = Time.time + 0.5f / attackRate;
+                if (Input.GetKeyDown(KeyCode.Z) || gerakAtk == true)
+                {
+                    Atk();
+                    nextAtktime = Time.time + 0.75f / attackRate;
+                }
             }
-        }
         }
     }
 
+    public void TekanAtk()
+    {
+        gerakAtk = true;
+    }
+    
     void Atk()
     {
         // play anim
@@ -44,6 +47,7 @@ public class Attackplayer : MonoBehaviour
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
+        gerakAtk = false;
     }
 
     void OnDrawGizmosSelected() 

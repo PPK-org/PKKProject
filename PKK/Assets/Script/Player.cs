@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
     float nextHittime= 0f;
     public float hitRate = 2f;
     public int eventCount;
+    public bool gerakKiri;
+    public bool gerakKanan;
+    public bool gerakLoncat;
+    public bool cekinteraksi;
     private Vector2 boxSize = new Vector2(0.1f,1f);
     public GameObject playerplay;
     private Rigidbody2D _rigidbody;
@@ -21,21 +25,24 @@ public class Player : MonoBehaviour
     public Collider2D col;
     public HealthBar healthBar;
     public GameObject interaction;
+    public GameObject interectbtn;
+    public GameObject atkbtn;
     public Vector2 Checkpoint;
     public Vector3 position;
+    public int pindah;
+    public bool balik;
     [SerializeField]
     GameObject Hero;
     // Start is called before the first frame update
     void Start()
     {
-        if(DataPlayer.Resume == true)
+        if(DataPlayer.resume == true)
         {   
-            
             position.x = DataPlayer.xposition;
             position.y = DataPlayer.yposition;
             position.z = DataPlayer.zposition;
             transform.position = position;
-            
+            DataPlayer.resume = false;
         }
         if (DataPlayer.backscene == true)
         {
@@ -65,8 +72,17 @@ public class Player : MonoBehaviour
             animator.SetFloat("isWalking", Mathf.Abs(movement));
             if (!Mathf.Approximately(0, movement))
             {
-
                 transform.rotation = -movement > 0 ? Quaternion.Euler(0,-200,0) : Quaternion.identity;
+            } else if (gerakKiri == true)
+            {
+                transform.Translate (Vector2.right * -MovementSpeed * Time.deltaTime);
+                pindah=1;
+                animator.SetFloat("isWalking", Mathf.Abs(-MovementSpeed));
+            } else if (gerakKanan == true)
+            {
+                transform.Translate (Vector2.right * MovementSpeed * Time.deltaTime);
+                animator.SetFloat("isWalking", Mathf.Abs(MovementSpeed));
+                pindah=-1;
             }
 
             if (Input.GetKeyDown(KeyCode.X) && Mathf.Abs(_rigidbody.velocity.y) < 0.001f)
@@ -74,17 +90,34 @@ public class Player : MonoBehaviour
                 _rigidbody.AddForce(new Vector2(0, Jumpforce), ForceMode2D.Impulse);
                 animator.SetBool("isJump", true);
             
+            }else if (gerakLoncat == true && Mathf.Abs(_rigidbody.velocity.y) < 0.001f){
+                 _rigidbody.AddForce(new Vector2(0, Jumpforce), ForceMode2D.Impulse);
+                animator.SetBool("isJump", true);
+                gerakLoncat = false;
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                TakeDamage(20);
-            }
-            if (Input.GetKeyDown(KeyCode.C))
+            // if (Input.GetKeyDown(KeyCode.Space))
+            // {
+            //     TakeDamage(20);
+            // }
+            if (Input.GetKeyDown(KeyCode.C)|| cekinteraksi==true)
             {
                 CheckInteraction();
             }
+            if(pindah > 0 && !balik){
+                BalikBadan();
+            }else if (pindah < 0 && balik)
+            {
+                BalikBadan();
+            }
         }
-    
+    }
+
+    public void BalikBadan()
+    {
+        balik = !balik;
+        Vector3 karakter = transform.localScale;
+        karakter.x *= -1;
+        transform.localScale = karakter;
     }
     
     public void TakeDamage(int damage)
@@ -124,11 +157,13 @@ public class Player : MonoBehaviour
     }
     public void OpenInterectableIcon()
     {
-
+        interectbtn.SetActive(true);
+        atkbtn.SetActive(false);
     }
     public void CloseInterectableIcon()
     {
-        
+        atkbtn.SetActive(true);
+        interectbtn.SetActive(false);
     }
     public void CheckInteraction()
     {
@@ -141,11 +176,13 @@ public class Player : MonoBehaviour
                 if (rc.IsInteractable())
                 {
                     currenthealth = maxhealth;
+                    cekinteraksi = false;
                     healthBar.SetHealth(currenthealth);
                     rc.Interact();
                     return;
                 }
             }
+            
         }
     }
     void Die()
@@ -168,10 +205,35 @@ public class Player : MonoBehaviour
         }
         
     }
-    public void SavePlayer()
-    {
-        SaveSystem.SavePlayer(this);
-    }
+    // public void SavePlayer()
+    // {
+    //     SaveSystem.SavePlayer(this);
+    // }
 
+    public void TekanKiri()
+    {
+        gerakKiri = true;
+    }
+    public void TekanKanan()
+    {
+        gerakKanan = true;
+    }
+    public void TekanLoncat()
+    {
+        gerakLoncat = true;
+    }
+    public void TekanInteraksi()
+    {
+        cekinteraksi = true;
+    }
+    public void LepasKiri()
+    {
+        gerakKiri = false;
+    }
+    public void LepasKanan()
+    {
+        gerakKanan = false;
+    }
+    
     
 }

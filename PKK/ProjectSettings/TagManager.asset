@@ -9,6 +9,7 @@ TagManager:
   - scannerEnemy
   - ScannerPlayer
   - End
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -43,7 +44,10 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: BG
+  - name: BG0
+    uniqueID: 1565009167
+    locked: 0
+  - name: BG1
     uniqueID: 110791477
     locked: 0
   - name: Default
@@ -51,6 +55,9 @@ TagManager:
     locked: 0
   - name: BG2
     uniqueID: 2623815879
+    locked: 0
+  - name: BG3
+    uniqueID: 520124557
     locked: 0
   - name: Player
     uniqueID: 578360065

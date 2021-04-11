@@ -20,7 +20,6 @@ public static class SaveSystem
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-
             DataPlayer data = formatter.Deserialize(stream) as DataPlayer;
             stream.Close();
             return data;

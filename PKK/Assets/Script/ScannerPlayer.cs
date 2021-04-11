@@ -9,7 +9,7 @@ public class ScannerPlayer : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.name == "Player")
         {
-            enemy.GetComponent<EnemyAI>().setSpeed(400);
+            enemy.GetComponent<EnemyAI>().setSpeed(500);
         }
     }
     public void OnTriggerExit2D(Collider2D other){

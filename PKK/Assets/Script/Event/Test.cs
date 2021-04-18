@@ -25,10 +25,10 @@ public class Test : MonoBehaviour
     }
     public void TextDisplay()
     {
-        textSave1.text = "Data "+DataPlayer.id[0];
-        textSave2.text = "Data "+DataPlayer.id[1];
-        textSave3.text = "Data "+DataPlayer.id[2];
-        textSave4.text = "Data "+DataPlayer.id[3];
+        textSave1.text = "Load";
+        textSave2.text = "Load";
+        textSave3.text = "Load";
+        textSave4.text = "Load";
         textDate1.text = "Last Save "+DataPlayer.DateTimes[0];
         textDate2.text = "Last Save "+DataPlayer.DateTimes[1];
         textDate3.text = "Last Save "+DataPlayer.DateTimes[2];

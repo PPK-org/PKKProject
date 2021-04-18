@@ -19,8 +19,6 @@ public class AttackEnemy : MonoBehaviour
         {
             
             Atk();
-            nextAtktime = Time.time + 2f / attackRate;
-            
         } 
 
     }
@@ -33,7 +31,9 @@ public class AttackEnemy : MonoBehaviour
         {
             
             Player.GetComponent<Player>().TakeDamage(attackDamage);
+            nextAtktime = Time.time + 2f / attackRate;
         }
+        
        
     }
 

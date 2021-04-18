@@ -9,7 +9,7 @@ public abstract class Interactable : MonoBehaviour
 
    public abstract void Interact();
 
-   private void OnTriggerEnter2D(Collider2D collision)
+   private void OnTriggerStay2D(Collider2D collision)
    {
        if(collision.CompareTag("Player"))
         collision.GetComponent<Player>().OpenInterectableIcon();

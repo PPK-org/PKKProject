@@ -38,18 +38,23 @@ public class MainMenu : MonoBehaviour
         //Android.reader_function();
         //DataPlayer data = SaveSystem.LoadPlayer();
         DataPlayer.resume = true;
-        if(DataPlayer.level != 0)
-        {
-            LoadLevel(DataPlayer.level);
-        }else
-        {
-            LoadLevel(1);
-        }
-        
+        DataPlayer.checkcheckpoint = true;
+        LoadLevel(DataPlayer.level);
+    }
+
+    public void NewGame()
+    {
+        LoadLevel(1);
     }
     public void Quit()
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    void Start()
+    {
+        DataPlayer.checkcheckpoint = false;
+        Debug.Log(DataPlayer.checkcheckpoint);
     }
 }

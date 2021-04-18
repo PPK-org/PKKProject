@@ -16,7 +16,9 @@ public class Android : MonoBehaviour
     private IDataReader reader;
     public InputField t_name, t_Address, t_id;
     public Text data_staff;
-    public GameObject verifscreen, loadingScreen;
+    public GameObject verifscreen, loadingScreen, verifscreendel, loadScreen, newgame;
+    public int indexdel;
+    private string tanggal;
 
     string DatabaseName = "SaveDB.s3db";
     // Start is called before the first frame update
@@ -101,11 +103,14 @@ public class Android : MonoBehaviour
     }
 
     //Delete
-    public void Delete_button()
+    public void Delete_button(int index)
     {
-        data_staff.text = "";
-        Delete_function(t_id.text);
-
+        indexdel = index;
+        loadScreen.SetActive(false);
+        verifscreendel.SetActive(true);
+    }
+    public void Delete_verif(){
+        Delete_function(indexdel);
     }
 
     //Insert To Database
@@ -126,10 +131,35 @@ public class Android : MonoBehaviour
 
         //reader_function();
     }
+    public void Delete_function(int index)
+    {
+        using (dbconn = new SqliteConnection(conn))
+        {
+            dbconn.Open(); //Open connection to the database.
+            dbcmd = dbconn.CreateCommand();
+            sqlQuery = string.Format("Update Savedat set resume = 'false', currenthealth = 0, xposition =0, yposition =0, zposition =0, eventPlay ='false', backscene ='false', eventCount =0, level =0, datetime='kosong' Where id=\"{0}\"", index);// table name
+            //sqlQuery = string.Format("insert into Savedat (resume, currenthealth, xposition, yposition, zposition, eventPlay, backscene, eventCount, level) values (\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\")", resume, currenthealth, xposition, yposition, zposition, eventPlay, backscene, eventCount, level);// table name
+            dbcmd.CommandText = sqlQuery;
+            dbcmd.ExecuteScalar();
+            dbconn.Close();
+        }
+        //data_staff.text = "";
+        Debug.Log("Insert Done  ");
+
+        //reader_function();
+    }
     public void TombolData1(int index){
-        verifscreen.SetActive(true);
-        loadingScreen.SetActive(false);
+        
         Ambildata1(index);
+        if(tanggal=="kosong")
+        {
+            newgame.SetActive(true);
+            loadingScreen.SetActive(false);
+        }else
+        {
+            verifscreen.SetActive(true);
+            loadingScreen.SetActive(false);
+        }
     }
     //Read All Data For To Database
     public void Ambildata1(int index)
@@ -178,6 +208,7 @@ public class Android : MonoBehaviour
                             DataPlayer.resume = false;
                         }
                         DataPlayer.eventCount = reader.GetInt32(8);
+                        tanggal = reader.GetString(10);
                     }
                 reader.Close();
                 }
@@ -320,26 +351,26 @@ public class Android : MonoBehaviour
 
 
     //Delete
-    private void Delete_function(string Delete_by_id)
-    {
-        using (dbconn = new SqliteConnection(conn))
-        {
+    // private void Delete_function(string Delete_by_id)
+    // {
+    //     using (dbconn = new SqliteConnection(conn))
+    //     {
 
-            dbconn.Open(); //Open connection to the database.
-            IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "DELETE FROM Staff where id =" + Delete_by_id;// table name
-            dbcmd.CommandText = sqlQuery;
-            IDataReader reader = dbcmd.ExecuteReader();
+    //         dbconn.Open(); //Open connection to the database.
+    //         IDbCommand dbcmd = dbconn.CreateCommand();
+    //         string sqlQuery = "DELETE FROM Staff where id =" + Delete_by_id;// table name
+    //         dbcmd.CommandText = sqlQuery;
+    //         IDataReader reader = dbcmd.ExecuteReader();
 
 
-            dbcmd.Dispose();
-            dbcmd = null;
-            dbconn.Close();
-            data_staff.text = Delete_by_id + " Delete  Done ";
+    //         dbcmd.Dispose();
+    //         dbcmd = null;
+    //         dbconn.Close();
+    //         data_staff.text = Delete_by_id + " Delete  Done ";
 
-        }
+    //     }
 
-    }
+    // }
     // Update is called once per frame
     void Update()
     {

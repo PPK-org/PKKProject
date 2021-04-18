@@ -20,6 +20,7 @@ ScriptsOnlyBuild:
     - ScannerPlayer
     - Test
     - ToCheckpoint
+    - Transition
     AstarPathfindingProject.dll:
     - AstarPath
     - Pathfinding.Seeker
@@ -37,7 +38,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -101,8 +101,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -130,23 +128,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2988}
     - Class: 114
-      Script: {instanceID: 3058}
+      Script: {instanceID: 3060}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3324}
+      Script: {instanceID: 3326}
     - Class: 114
-      Script: {instanceID: 3456}
+      Script: {instanceID: 3458}
     - Class: 114
-      Script: {instanceID: 3686}
+      Script: {instanceID: 3688}
     - Class: 114
-      Script: {instanceID: 3922}
+      Script: {instanceID: 3924}
     - Class: 114
-      Script: {instanceID: 4140}
+      Script: {instanceID: 4142}
     - Class: 114
-      Script: {instanceID: 4190}
+      Script: {instanceID: 4192}
     - Class: 114
-      Script: {instanceID: 4296}
+      Script: {instanceID: 4298}
+    - Class: 114
+      Script: {instanceID: 90830}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -164,6 +164,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
       Script: {instanceID: 0}
     - Class: 156049354
       Script: {instanceID: 0}
@@ -243,33 +245,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3058}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 3060}
     - Class: 114
-      Script: {instanceID: 3324}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3456}
+      Script: {instanceID: 3326}
     - Class: 114
-      Script: {instanceID: 3686}
+      Script: {instanceID: 3458}
     - Class: 114
-      Script: {instanceID: 3922}
+      Script: {instanceID: 3688}
     - Class: 114
-      Script: {instanceID: 3974}
+      Script: {instanceID: 3924}
     - Class: 114
-      Script: {instanceID: 4140}
+      Script: {instanceID: 3976}
     - Class: 114
-      Script: {instanceID: 4190}
+      Script: {instanceID: 4142}
     - Class: 114
-      Script: {instanceID: 4296}
+      Script: {instanceID: 4192}
     - Class: 114
-      Script: {instanceID: 4650}
+      Script: {instanceID: 4298}
     - Class: 114
-      Script: {instanceID: 5336}
+      Script: {instanceID: 4652}
     - Class: 114
-      Script: {instanceID: 5474}
+      Script: {instanceID: 5338}
     - Class: 114
-      Script: {instanceID: 5488}
+      Script: {instanceID: 5476}
     - Class: 114
-      Script: {instanceID: 22364}
+      Script: {instanceID: 5490}
+    - Class: 114
+      Script: {instanceID: 90830}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -287,6 +291,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
       Script: {instanceID: 0}
     - Class: 156049354
       Script: {instanceID: 0}
@@ -336,19 +342,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2918}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3324}
+      Script: {instanceID: 3326}
     - Class: 114
-      Script: {instanceID: 3456}
+      Script: {instanceID: 3458}
     - Class: 114
-      Script: {instanceID: 4594}
+      Script: {instanceID: 4596}
     - Class: 114
-      Script: {instanceID: 4626}
+      Script: {instanceID: 4628}
     - Class: 114
-      Script: {instanceID: 4772}
+      Script: {instanceID: 4774}
     - Class: 114
-      Script: {instanceID: 5148}
+      Script: {instanceID: 5150}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -562,7 +568,7 @@ ScriptsOnlyBuild:
     className: AstarPath
   - hash:
       serializedVersion: 2
-      Hash: 88bd0cb378053dc64905a6338186c4e0
+      Hash: 8ed03d19f1bb7cfd07acbc3500fb7171
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Android
@@ -868,6 +874,12 @@ ScriptsOnlyBuild:
     className: RelevantGraphSurface
   - hash:
       serializedVersion: 2
+      Hash: a22f872681bf9fd9d3f3d3f705c4cf0e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyKocheng
+  - hash:
+      serializedVersion: 2
       Hash: cc90edf98172289f293b8c372cb811a3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1072,7 +1084,7 @@ ScriptsOnlyBuild:
     className: CinemachineSmoothPath
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 3cbe666ec9286af7a00a01dc706e2ee4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ToCheckpoint
@@ -1126,7 +1138,7 @@ ScriptsOnlyBuild:
     className: CinemachineFixedSignal
   - hash:
       serializedVersion: 2
-      Hash: 21c017c49f7494e2ccb8af1b725ea9f4
+      Hash: 93002cbd7506ffe63f84f6842efe6b27
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -1582,7 +1594,7 @@ ScriptsOnlyBuild:
     className: CinemachineRecomposer
   - hash:
       serializedVersion: 2
-      Hash: 2269bf20206dd40d294c718aa857588e
+      Hash: 2abb3f5246c235a98ab1756531fd4f56
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Dialog
@@ -1612,7 +1624,7 @@ ScriptsOnlyBuild:
     className: FunnelModifier
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: f450bd92c660880e07a6cb4e4f93cd6d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EventTrigger1
@@ -1696,13 +1708,19 @@ ScriptsOnlyBuild:
     className: SingleNodeBlocker
   - hash:
       serializedVersion: 2
-      Hash: a22f872681bf9fd9d3f3d3f705c4cf0e
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: EnemyKocheng
+    className: DialogText
+  - hash:
+      serializedVersion: 2
+      Hash: 364e3cd008459d079ce19ca42999b8d5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Transition
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Game.unity
   - Assets/Scenes/CheckPoint1.unity
-  playerPath: D:/a/Myth Game 0.1.apk
+  playerPath: D:/a/Myth Game 0.31.apk

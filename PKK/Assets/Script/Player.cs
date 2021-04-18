@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public GameObject interaction;
     public GameObject interectbtn;
     public GameObject atkbtn;
+    public GameObject tanda;
     public Vector2 Checkpoint;
     public Vector3 position;
     public int pindah;
@@ -36,7 +37,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(DataPlayer.resume == true)
+        
+        if(DataPlayer.resume == true && DataPlayer.nextscene == false || DataPlayer.checkcheckpoint == true && DataPlayer.nextscene == false)
         {   
             position.x = DataPlayer.xposition;
             position.y = DataPlayer.yposition;
@@ -157,11 +159,13 @@ public class Player : MonoBehaviour
     }
     public void OpenInterectableIcon()
     {
+        tanda.SetActive(true);
         interectbtn.SetActive(true);
         atkbtn.SetActive(false);
     }
     public void CloseInterectableIcon()
     {
+        tanda.SetActive(false);
         atkbtn.SetActive(true);
         interectbtn.SetActive(false);
     }
@@ -189,16 +193,21 @@ public class Player : MonoBehaviour
     {
         DataPlayer.currenthealth = maxhealth;
         Debug.Log("Player Die");
-        StartCoroutine(Respawn());
+        Respawn();
     }
 
-    IEnumerator Respawn()
+    void Respawn()
     {
         Destroy(gameObject, 1f);
-        yield return new WaitForSeconds(0.9f);
+        //yield return new WaitForSeconds(0.9f);
         if(cekCheckpoint == true)
         {
-            Instantiate(Hero, Checkpoint, Quaternion.identity);
+            position.x = DataPlayer.xposition;
+            position.y = DataPlayer.yposition;
+            position.z = DataPlayer.zposition;
+            DataPlayer.resume = true;
+            DataPlayer.checkcheckpoint = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }else 
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

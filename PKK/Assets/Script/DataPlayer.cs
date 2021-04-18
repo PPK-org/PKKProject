@@ -16,6 +16,8 @@ public class DataPlayer
     public static bool eventPlay;
     public static bool backscene;
     public static int eventCount = 0;
+    public static bool nextscene;
+    public static bool checkcheckpoint;
     public static int[] id = new int[4];
     public static string datetimenow;
     public static string [] DateTimes = new string[4];

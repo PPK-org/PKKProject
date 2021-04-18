@@ -4,9 +4,10 @@ using UnityEngine;
 using TMPro;
 public class Dialog : MonoBehaviour
 {
-    public TextMeshProUGUI textDisplay;
-    public string[] sentences;
-    private int index;
+    public TextMeshProUGUI textDisplay, textNama;
+    //public string[] sentences;
+    //private int index;
+    public int indexs;
     public float typingSpeed;
     public GameObject dialog;
     public GameObject continueButton;
@@ -16,7 +17,7 @@ public class Dialog : MonoBehaviour
         
     }
     IEnumerator Type(){
-        foreach (char letter in sentences[index].ToCharArray())
+        foreach (char letter in DialogText.sentences[DialogText.index].ToCharArray())
         {
             textDisplay.text += letter;
             yield return new WaitForSeconds(typingSpeed);
@@ -25,32 +26,40 @@ public class Dialog : MonoBehaviour
 
     public void NextSentence(){
         continueButton.SetActive(false);
-        if(index < sentences.Length - 1){
-            index++;
+        if(DialogText.index < DialogText.sentences.Length - 1){
+            DialogText.index++;
             textDisplay.text = "";
             StartCoroutine(Type());
         }else{
             textDisplay.text = "";
             DataPlayer.eventPlay = false;
-            DataPlayer.eventCount = 2;
+            DataPlayer.eventCount++;
+            //Debug.Log(DataPlayer.eventCount);
             dialog.SetActive(false);
             continueButton.SetActive(false);
-
+            //Destroy(gameObject);
         }
     }
     // Update is called once per frame
     void Update()
     {
-        if(DataPlayer.eventCount == 1){
+        textNama.text = DialogText.namadialog;
+        //Debug.Log(DataPlayer.eventCount);
+        if(DataPlayer.eventCount == indexs){
             if(DataPlayer.eventPlay == false)
             {
                 dialog.SetActive(true);
                 StartCoroutine(Type());
                 DataPlayer.eventPlay = true;
             }else{
-                if(textDisplay.text == sentences[index]){
-                continueButton.SetActive(true);
-            }
+                //Debug.Log("masuk");
+                //Debug.Log(textDisplay.text);
+                //Debug.Log("index "+DialogText.index);
+                if(textDisplay.text == DialogText.sentences[DialogText.index])
+                {
+                    //Debug.Log("masuk");
+                    continueButton.SetActive(true);
+                }
             }
             
         }
